@@ -1,18 +1,24 @@
 <script setup>
+//import state
+import { store } from '../store.js'
+// import component
+import AppCard from './AppCard.vue'
+</script>
+
+<script>
+export default {
+
+}
 </script>
 
 <template>
-    <div class="row row-cols-1 row-cols-md-2 g-3 py-5">
-        <div class="col">
-            <div class="card">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                        additional
-                        content. This content is a little bit longer.</p>
-                </div>
-            </div>
+    <!-- cardgroup wrapper -->
+    <div class="row row-cols-1 row-cols-lg-4 g-4 py-5">
+        <!-- vfor to generate cards -->
+        <!-- store.charaList is an Array -->
+        <div class="col" v-for="(obj, index) in store.charaList" :key="index">
+            <!-- props obj to AppCard-->
+            <AppCard :info="obj" />
         </div>
     </div>
 </template>
