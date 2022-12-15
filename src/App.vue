@@ -67,7 +67,7 @@ export default {
         var url = store.apiInfo.prev;
         console.log(url);
 
-        if (store.pageCount !== 0) {
+        if (store.pageCount != 1) {
           // decrement page counter
           store.pageCount--;
         }
@@ -106,7 +106,7 @@ export default {
     <!-- searchbar -->
     <AppSearch @filter="getCharaList" />
   </header>
-  <main class="container">
+  <main class="container p-4 mb-5">
     <!-- useful info (^_^) -->
     <h5>Found <span class="badge bg-primary">{{ store.apiInfo.count }}</span> characters</h5>
     <h6><span class="badge bg-warning">{{ store.pageCount }}</span> of <span class="badge bg-warning">{{
