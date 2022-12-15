@@ -8,4 +8,5 @@ export const store = reactive({
     searchInput: '',
     selectInput: '',
     query: '',
+    pageCount: 1,
 })

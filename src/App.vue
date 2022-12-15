@@ -18,16 +18,14 @@ export default {
     };
   },
   methods: {
+
     // get data from api
     getCharaList() {
       // create query from AppSearch
-      if (store.selectInput !== '') {
-        console.log('selected: ', store.selectInput);
+      store.query = '?status=' + store.selectInput;
 
-        store.query = '?status=' + store.selectInput;
-
-        console.log('query: ', store.query);
-      }
+      console.log('selected: ', store.selectInput);
+      console.log('query: ', store.query);
       //get API
       axios.get(store.apiURL + store.query) //get api url from store
         .then(function (response) {
@@ -44,9 +42,12 @@ export default {
         .catch(function (error) {
           console.log(error);
         });
-
+      // reset page counter
+      store.pageCount = 1;
       console.log(store.apiURL + store.query);
     },
+
+
     //for page buttons
     pageChange(string) {
 
@@ -54,12 +55,22 @@ export default {
         // set url
         var url = store.apiInfo.next;
         console.log(url);
+
+        if (store.pageCount !== store.apiInfo.pages) {
+          // increment page counter
+          store.pageCount++;
+        }
       }
 
       if (string === 'prev') {
         // set url
         var url = store.apiInfo.prev;
         console.log(url);
+
+        if (store.pageCount !== 0) {
+          // decrement page counter
+          store.pageCount--;
+        }
       }
 
       // get data from API from "url"
@@ -98,7 +109,9 @@ export default {
   <main class="container">
     <!-- useful info (^_^) -->
     <h5>Found <span class="badge bg-primary">{{ store.apiInfo.count }}</span> characters</h5>
-    <h6><span class="badge bg-warning">{{ store.apiInfo.pages }}</span> pages</h6>
+    <h6><span class="badge bg-warning">{{ store.pageCount }}</span> of <span class="badge bg-warning">{{
+        store.apiInfo.pages
+    }}</span> pages</h6>
     <!-- page controls -->
     <AppControls @next="pageChange('next')" @prev="pageChange('prev')" />
     <!-- card grid -->
