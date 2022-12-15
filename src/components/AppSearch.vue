@@ -14,6 +14,7 @@ export default {
 
 <template>
     <div class="input-group my-4">
+        <!--filter select -->
         <label class="input-group-text" for="inputGroupSelect01">Filter</label>
         <select class="form-select" id="inputGroupSelect01" v-model="store.selectInput" @change="$emit('filter')">
             <option value="">Choose...</option>
@@ -21,10 +22,9 @@ export default {
             <option value="dead">Dead</option>
             <option value="unknown">Unknown</option>
         </select>
+        <!-- search input -->
         <input type="text" class="form-control" disabled>
         <button type="button" class="btn btn-outline-secondary" @click="$emit('filter')">Search</button>
-    </div>
-    <div class="input-group">
     </div>
 </template>
 
